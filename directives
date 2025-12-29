@@ -1,0 +1,198 @@
+# Angular Built-in Directives – Single File Explanation
+
+This document explains **Angular built-in directives**, their purpose, types, and usage with clear examples.
+
+---
+
+## What is a Directive in Angular?
+
+A **directive** is a class that adds **behavior or modifies the DOM**.
+
+Angular uses directives to:
+
+* Add/remove elements
+* Change appearance
+* Handle conditional rendering
+* Repeat elements dynamically
+
+---
+
+## Types of Built-in Directives
+
+Angular has **three main types** of built-in directives:
+
+1. **Structural Directives** – change DOM structure
+2. **Attribute Directives** – change appearance/behavior
+3. **Component Directives** – directives with templates
+
+---
+
+## 1. Structural Directives
+
+Structural directives **add or remove elements from the DOM**.
+They always start with `*`.
+
+### `*ngIf`
+
+Conditionally adds/removes elements.
+
+```html
+<div *ngIf="isLoggedIn">Welcome User</div>
+```
+
+---
+
+### `*ngIf` with else
+
+```html
+<div *ngIf="isLoggedIn; else guest">Welcome</div>
+<ng-template #guest>Please Login</ng-template>
+```
+
+---
+
+### `*ngFor`
+
+Repeats elements for each item in a collection.
+
+```html
+<li *ngFor="let item of items; index as i">
+  {{ i }} - {{ item }}
+</li>
+```
+
+---
+
+### `*ngSwitch`
+
+Used for multiple conditional cases.
+
+```html
+<div [ngSwitch]="role">
+  <p *ngSwitchCase="'admin'">Admin</p>
+  <p *ngSwitchCase="'user'">User</p>
+  <p *ngSwitchDefault>Guest</p>
+</div>
+```
+
+---
+
+## 2. Attribute Directives
+
+Attribute directives **change the appearance or behavior** of an element.
+They do NOT add or remove elements.
+
+---
+
+### `ngClass`
+
+Adds/removes CSS classes dynamically.
+
+```html
+<div [ngClass]="{ active: isActive, disabled: isDisabled }">
+  Status
+</div>
+```
+
+---
+
+### `ngStyle`
+
+Applies inline styles dynamically.
+
+```html
+<div [ngStyle]="{ color: textColor, 'font-size': fontSize + 'px' }">
+  Styled Text
+</div>
+```
+
+---
+
+### `ngModel`
+
+Enables two-way data binding (forms).
+
+```html
+<input [(ngModel)]="username">
+```
+
+⚠ Requires importing `FormsModule`.
+
+---
+
+## 3. Component Directives
+
+Components are directives **with templates**.
+
+```ts
+@Component({
+  selector: 'app-user',
+  template: '<p>User Component</p>'
+})
+export class UserComponent {}
+```
+
+Usage:
+
+```html
+<app-user></app-user>
+```
+
+---
+
+## Special Angular Elements
+
+### `<ng-container>`
+
+Groups elements **without adding extra DOM nodes**.
+
+```html
+<ng-container *ngIf="isVisible">
+  <p>Line 1</p>
+  <p>Line 2</p>
+</ng-container>
+```
+
+---
+
+### `<ng-template>`
+
+Defines a template that is rendered conditionally.
+
+```html
+<ng-template #loading>
+  Loading...
+</ng-template>
+```
+
+---
+
+## Summary Table
+
+| Directive   | Type       | Purpose               |
+| ----------- | ---------- | --------------------- |
+| `*ngIf`     | Structural | Conditional rendering |
+| `*ngFor`    | Structural | Looping               |
+| `*ngSwitch` | Structural | Multiple conditions   |
+| `ngClass`   | Attribute  | Dynamic CSS classes   |
+| `ngStyle`   | Attribute  | Dynamic styles        |
+| `ngModel`   | Attribute  | Two-way binding       |
+
+---
+
+## Best Practices
+
+* Use `*ngIf` instead of hiding elements with CSS
+* Use `trackBy` with `*ngFor` for performance
+* Avoid heavy logic inside templates
+* Prefer attribute directives for styling
+
+---
+
+## One-line Memory Rule
+
+> Structural directives change the DOM, attribute directives change appearance, components are directives with templates.
+
+---
+
+This file covers **all commonly used Angular built-in directives** in one place.
