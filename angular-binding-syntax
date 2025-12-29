@@ -1,0 +1,70 @@
+# Angular Binding Syntax: `[]`, `()`, `[()]`
+
+This file explains **when and why to use `[]` and `()` in Angular templates**, with clear rules and examples.
+
+
+## 1. `[]` — Property Binding (Component ➜ View)
+
+
+It binds a component value to a **DOM property or directive input**.
+
+
+- Examples
+
+
+<img [src]="imageUrl">
+<input [disabled]="isDisabled">
+<div [innerText]="count"></div>
+<app-child [user]="user"></app-child>
+```
+
+- Key points
+
+* One-way data flow
+* Component controls the UI
+* Preferred for predictable state
+
+---
+ 2. `()` — Event Binding (View ➜ Component)
+
+
+It listens to **DOM events or custom events** and calls a component method.
+
+
+- Key points
+
+* One-way data flow
+* Triggered by user actions
+* Updates component state
+
+---
+
+## 3. `[()]` — Two-Way Binding (Component ⇄ View)
+
+
+- Key points
+
+* Requires `FormsModule` (for `ngModel`)
+* Useful in forms
+* Should be used sparingly
+
+---
+
+
+
+## Quick Decision Guide
+
+| Requirement        | Use             |
+| ------------------ | --------------- |
+| Display data       | `[]` or `{{ }}` |
+| Handle user action | `()`            |
+| Auto-sync data     | `[()]`          |
+
+---
+
+
+---
+
+## One-line Memory Rule
+
+> `[]` sets data, `()` listens to events, `[()]` does both.
